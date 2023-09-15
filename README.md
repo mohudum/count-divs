@@ -1,4 +1,4 @@
-# Getting Started with COUNT-DIV Extension
+# Getting Started with COUNT-DIVS Extension
 
 ## To build react content script (main.js)
 

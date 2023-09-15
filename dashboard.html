@@ -22,7 +22,7 @@
 </thead>
 <tbody>
 <tr ng-repeat="x in list">
-    <td ng-bind="x.id" name="{{id+x.id}}"></td><td ng-bind="x.url"></td> <td ng-bind="x.divCount"></td>
+    <td ng-bind="x.id" name="{{id+x.id}}"></td><td ng-bind="x.url" name="url"></td> <td ng-bind="x.divCount" name="count"></td>
 </tr>
 </tbody>
 </table>
@@ -52,7 +52,6 @@ app.controller('listCtrl', function($scope, handleEvents, $rootScope,$window) {
     }
 
     $scope.list = (listObj==null)?[{url:"https://developer.chrome.com/docs/extensions/mv3/intro/",divCount:147}]:listObj.list; //array
-    //console.info(serviceName.foo);
   
     handleEvents.subscribeMe();
 
@@ -65,12 +64,6 @@ app.controller('listCtrl', function($scope, handleEvents, $rootScope,$window) {
         let list = [{url:"http://wwww/",divCount:10},{url:"http://angular/",divCount:12}];        
         $scope.listInitialise(list);
     }
-
-    /*$window.addEventListener("message", function(event) {
-        let listObj = JSON.parse(localStorage.getItem('list'));
-            $scope.list = listObj.list; //array
-            $scope.$apply();    
-        });*/
 
     //this will be in controller
     $scope.$on('app.messageEvent', function(a, b) {
