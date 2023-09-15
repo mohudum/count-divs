@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard for Count-Div Chrome Extension</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+<body ng-app="myApp" ng-controller="listCtrl">
+
+<div class="container">
+<h2>Dashboard</h2>
+<table class="table table-bordered">
+<thead>
+<th>Id</th>
+<th>Url</th>
+<th>Number of div elements</th>
+</thead>
+<tbody>
+<tr ng-repeat="x in list">
+    <td ng-bind="x.id" name="{{id+x.id}}"></td><td ng-bind="x.url"></td> <td ng-bind="x.divCount"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--<button ng-click="updateList()">Click me!</button>-->
+<script>
+
+var app = angular.module('myApp', []); 
+
+//this is service that creates subscription    
+app.service('handleEvents', function($window, $rootScope) {
+    function subsFunc() {
+    $window.addEventListener('message', function(e) {
+        $rootScope.$broadcast('app.messageEvent', e);
+    })
+    }
+
+    return {
+    "subscribeMe": subsFunc      
+    }
+});
+
+app.controller('listCtrl', function($scope, handleEvents, $rootScope,$window) {
+    let listObj = null;
+    if(typeof(Storage) !== undefined ){
+        listObj = JSON.parse(window.localStorage.getItem('list'));
+    }
+
+    $scope.list = (listObj==null)?[{url:"https://developer.chrome.com/docs/extensions/mv3/intro/",divCount:147}]:listObj.list; //array
+    //console.info(serviceName.foo);
+  
+    handleEvents.subscribeMe();
+
+    $scope.listInitialise = function(storageList) {
+        $scope.list = storageList;
+        //$scope.todoInput = "";
+    };
+
+    $scope.updateList =  function(){
+        let list = [{url:"http://wwww/",divCount:10},{url:"http://angular/",divCount:12}];        
+        $scope.listInitialise(list);
+    }
+
+    /*$window.addEventListener("message", function(event) {
+        let listObj = JSON.parse(localStorage.getItem('list'));
+            $scope.list = listObj.list; //array
+            $scope.$apply();    
+        });*/
+
+    //this will be in controller
+    $scope.$on('app.messageEvent', function(a, b) {
+        //a,b - event object details
+        console.log("inside app.messageEvent");
+        console.log(a);
+        console.log(b);
+        if(b.data.message == "update"){
+            let listObj = JSON.parse(window.localStorage.getItem('list'));
+            $scope.list = listObj.list; //array
+            $scope.$apply();
+        }
+
+    });
+});
+
+</script>
+
+</body>
+</html>
