@@ -9,10 +9,6 @@ In the project directory, go to cs_react directory, then run:
 Creates a production build\
 Once the build is completed, make sure main.js is created inside the build/static/js folder
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-
 ## To install chrome extension (count-divs)
 
 1. Open the manifest.json, currently the extension will run the content script (main.js) when the user visits any page  that matches this url https://developer.chrome.com/docs/extensions/*. 
