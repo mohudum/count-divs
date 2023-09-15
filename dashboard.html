@@ -22,7 +22,7 @@
 </thead>
 <tbody>
 <tr ng-repeat="x in list">
-    <td ng-bind="x.id" name="{{id+x.id}}"></td><td ng-bind="x.url" name="url"></td> <td ng-bind="x.divCount" name="count"></td>
+    <td ng-bind="x.id" name={{"id"+x.id}}></td><td ng-bind="x.url" name={{"url"+x.id}}></td> <td ng-bind="x.divCount" name={{"count"+x.id}}></td>
 </tr>
 </tbody>
 </table>
