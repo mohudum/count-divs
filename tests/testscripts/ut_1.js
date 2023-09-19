@@ -1,17 +1,15 @@
 const {By, Key, Builder} = require("selenium-webdriver");
-//require("chromedriver");
 //import the selenium web driver
-var webdriver = require('selenium-webdriver');
 var chrome = require("selenium-webdriver/chrome");
 
-//const chromeProfilePath = "C:\\Users\\MKamil.Kamil_laptop\\AppData\\Local\\Google\\Chrome\\User Data";
+//custome profile specificaly for testing
 const chromeProfilePath = "C:\\tmp\\newdir";
 
 var options = new chrome.Options();
+//setting the above profile
 options.addArguments(`user-data-dir=${chromeProfilePath}`);
-//options.addArguments("remote-debugging-port=9222");
 
-async function example(){
+async function ut_1(){
  
     //To wait for browser to build and launch properly
     try{
@@ -43,4 +41,4 @@ async function example(){
      await driver.quit();
 
 }
-example();
+ut_1();
