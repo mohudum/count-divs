@@ -11,9 +11,7 @@ Once the build is completed, make sure main.js is created inside the build/stati
 
 ## To install chrome extension (count-divs)
 
-1. Open the manifest.json, currently the extension will run the content script (main.js) when the user visits any page  that matches this url https://developer.chrome.com/docs/extensions/*. 
-
-main.js is located in the path as shown in the image below. It is a react based content script.
+1. Open the manifest.json, currently the extension will run the content script (main.js) when the user visits any page  that matches this url https://developer.chrome.com/docs/extensions/*. main.js is a react based content script.
  
 2. dashboard.html is the AngularJS file dashboard application located in the same location as mainifest.json. Move it to your webserver folder, so that it can be accessed as http://localhost/extensions/count-divs/dashboard.html. Once you have moved the dashboard.html to your webserver www folder, then copy the path and update it in manifest.json
 
@@ -23,7 +21,7 @@ main.js is located in the path as shown in the image below. It is a react based 
         "http://localhost/extensions/count-divs/*"
     ],
 
-4. Update the dashboard applicaton’s path in the background script too. Make sure the dashboarurl variable in the service_worker.js is pointing to your dashboard application’s path as below.
+4. Update the dashboard applicaton’s path in the background script too. Make sure the dashboardurl variable in the service_worker.js is pointing to your dashboard application’s path as below.
 
     const dashboardurl = "http://localhost/extensions/count-divs/*";
 
