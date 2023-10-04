@@ -17,7 +17,9 @@ if(divElementsCount){
 }
 })();
 
-const root = ReactDOM.createRoot(document.querySelector('.logo__text'));
+//const root = ReactDOM.createRoot(document.querySelector('.logo__text'));
+const root = ReactDOM.createRoot(document.querySelector('.top-nav__logo'));
+
 root.render(
   <React.StrictMode>
     <App count={divElementsCount}/>
