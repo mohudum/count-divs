@@ -2,7 +2,7 @@ const {By, Key, Builder} = require("selenium-webdriver");
 //import the selenium web driver
 var chrome = require("selenium-webdriver/chrome");
 
-//custome profile specificaly for testing
+//custom profile specificaly for testing
 const chromeProfilePath = "C:\\tmp\\newdir";
 
 var options = new chrome.Options();
@@ -22,7 +22,7 @@ async function ut_1(){
     let srcUrl = "https://developer.chrome.com/docs/extensions/mv3/getstarted/";
     await driver.get(srcUrl);
     //To fetch div count from the react cs with our code.
-    let srcDivCount = await driver.findElement(By.className("logo__text")).getText();
+    let srcDivCount = await driver.findElement(By.className("top-nav__logo")).getText();
 
     let tempArr = srcDivCount.split('#');
     srcDivCount = parseInt(tempArr[1]);
